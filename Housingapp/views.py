@@ -26,7 +26,7 @@ class TenantList(APIView):
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
     permission_classes = (IsAdminOrReadOnly,)
 
-class CommentDescription(APIView):
+class TenantDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get_tenant(self, pk):
         try:
@@ -180,11 +180,5 @@ class UserDescription(APIView):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# Create your views here.
 
-@login_required
-def choose_house(request):
-
-
-def post_comment(request):
 

@@ -43,12 +43,12 @@ class User(AbstractUser):
     is_tenant = models.BooleanField(default=False)
     is_landlord = models.BooleanField(default=False)
 
-
 class House(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='houses')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
     name = models.CharField(max_length=100)
     price = models.IntegerField(default=0,blank=True, null=True)
     location = models.CharField(max_length=100)
+
 
 
     def __str__(self):
@@ -56,7 +56,10 @@ class House(models.Model):
 
 class Tenant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    houses = models.ManyToManyField(House, through='ChosenHouse')
+    stall = models.ForeignKey(House, on_delete=models.CASCADE, related_name='houses')
+
+
+
     
 
 
